@@ -21,11 +21,11 @@ export const ContactForm = ({onSubmit}) => {
   };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={onSubmitForm}>
         <Label>
           <Title>Name</Title>
           <Input
-            onChange={this.handleChange}
+            onChange={onChangeName}
             type="text"
             name="name"
             value={name}
@@ -37,7 +37,7 @@ export const ContactForm = ({onSubmit}) => {
         <Label>
           <Title>Number</Title>
           <Input
-            onChange={this.handleChange}
+            onChange={onChangeNumber}
             type="tel"
             name="number"
             value={number}
@@ -52,6 +52,7 @@ export const ContactForm = ({onSubmit}) => {
       </Form>
     );
 }
+
 ContactForm.propType = {
   onSubmit: PropTypes.func.isRequired,
 };
