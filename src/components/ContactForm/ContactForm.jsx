@@ -1,35 +1,24 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 import { Form, Label, Title, Input, Button } from './ContactForm.styled';
 
-export const ContactForm = class ContactForm extends Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
+export const ContactForm = ({onSubmit}) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  state = {
-    name: '',
-    number: '',
-  };
+  const onChangeName = e => setName(e.currentTarget.value);
+  const onChangeNumber = e => setNumber(e.currentTarget.value);
 
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = e => {
+  const onSubmitForm = e => {
     e.preventDefault();
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
-    this.reset();
+    onSubmit({name, number});
+    reset();
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
-
-  render() {
-    const { name, number } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -62,5 +51,7 @@ export const ContactForm = class ContactForm extends Component {
         </Button>
       </Form>
     );
-  }
 }
+ContactForm.propType = {
+  onSubmit: PropTypes.func.isRequired,
+};
