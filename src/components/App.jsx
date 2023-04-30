@@ -50,23 +50,24 @@ export const App = () => {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
-  return (
-    <Container>
-      <Title>
-        Phone<TitleСolor>book</TitleСolor>
-      </Title>
-      <ContactForm onSubmit={addContact} />
 
-      <Subtitle>Contacts</Subtitle>
-      <Filter filter={filter} changeFilter={changeFilter} />
-      {contacts.length > 0 ? (
-        <ContactList
-          contacts={filteredContacts}
-          onDeleteContact={deleteContact}
-        />
-      ) : (
-        <Message text="Contact list is empty." />
-      )}
-    </Container>
-  );
-}
+    return (
+      <Container>
+        <Title>
+          Phone<TitleСolor>book</TitleСolor>
+        </Title>
+        <ContactForm onSubmit={addContact} />
+
+        <Subtitle>Contacts</Subtitle>
+        <Filter filter={filter} changeFilter={changeFilter} />
+        {contacts.length > 0 ? (
+          <ContactList
+            contacts={filteredContacts()}
+            onDeleteContact={deleteContact}
+          />
+        ) : (
+          <Message text="Contact list is empty." />
+        )}
+      </Container>
+    );
+  }
